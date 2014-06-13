@@ -85,6 +85,25 @@ CREATE TABLE `station` (
 );
 
 -- ---
+-- Table 'transport'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `transport`;
+		
+CREATE TABLE `transport` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `startDate` DATETIME NULL DEFAULT NULL,
+  `fromPlanet` INTEGER NULL DEFAULT NULL,
+  `fromStation` INTEGER NULL DEFAULT NULL,
+  `endDate` DATETIME NULL DEFAULT NULL,
+  `toPlanet` INTEGER NULL DEFAULT NULL,
+  `toStation` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+KEY (`fromPlanet`)
+);
+
+-- ---
 -- Foreign Keys 
 -- ---
 
@@ -98,6 +117,7 @@ CREATE TABLE `station` (
 -- ALTER TABLE `user` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `planet` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `station` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `transport` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ---
 -- Test Data
@@ -113,3 +133,6 @@ CREATE TABLE `station` (
 -- ('','','');
 -- INSERT INTO `station` (`id`,`new field`,`name`,`cargoSize`) VALUES
 -- ('','','','');
+-- INSERT INTO `transport` (`id`,`startDate`,`fromPlanet`,`fromStation`,`endDate`,`toPlanet`,`toStation`) VALUES
+-- ('','','','','','','');
+
