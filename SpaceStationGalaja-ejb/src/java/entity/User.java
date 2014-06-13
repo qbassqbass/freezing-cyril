@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package ejb;
+package entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -26,36 +24,34 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Jakub
  */
 @Entity
-@Table(name = "dock")
+@Table(name = "user")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Dock.findAll", query = "SELECT d FROM Dock d"),
-    @NamedQuery(name = "Dock.findById", query = "SELECT d FROM Dock d WHERE d.id = :id"),
-    @NamedQuery(name = "Dock.findByName", query = "SELECT d FROM Dock d WHERE d.name = :name"),
-    @NamedQuery(name = "Dock.findByType", query = "SELECT d FROM Dock d WHERE d.type = :type"),
-    @NamedQuery(name = "Dock.findByEfficiency", query = "SELECT d FROM Dock d WHERE d.efficiency = :efficiency")})
-public class Dock implements Serializable {
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+    @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
+    @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name"),
+    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
+    @NamedQuery(name = "User.findByType", query = "SELECT u FROM User u WHERE u.type = :type")})
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 20)
+    @Size(max = 15)
     @Column(name = "name")
     private String name;
+    @Size(max = 25)
+    @Column(name = "password")
+    private String password;
     @Column(name = "type")
     private Integer type;
-    @Column(name = "efficiency")
-    private Integer efficiency;
-    @JoinColumn(name = "onStation", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Station onStation;
 
-    public Dock() {
+    public User() {
     }
 
-    public Dock(Integer id) {
+    public User(Integer id) {
         this.id = id;
     }
 
@@ -75,28 +71,20 @@ public class Dock implements Serializable {
         this.name = name;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Integer getType() {
         return type;
     }
 
     public void setType(Integer type) {
         this.type = type;
-    }
-
-    public Integer getEfficiency() {
-        return efficiency;
-    }
-
-    public void setEfficiency(Integer efficiency) {
-        this.efficiency = efficiency;
-    }
-
-    public Station getOnStation() {
-        return onStation;
-    }
-
-    public void setOnStation(Station onStation) {
-        this.onStation = onStation;
     }
 
     @Override
@@ -109,10 +97,10 @@ public class Dock implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Dock)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Dock other = (Dock) object;
+        User other = (User) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -121,7 +109,7 @@ public class Dock implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Dock[ id=" + id + " ]";
+        return "ejb.User[ id=" + id + " ]";
     }
     
 }

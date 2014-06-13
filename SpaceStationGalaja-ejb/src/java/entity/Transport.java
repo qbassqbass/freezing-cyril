@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package ejb;
+package entity;
 
 import java.io.Serializable;
 import java.util.Date;
