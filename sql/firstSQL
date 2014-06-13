@@ -1,0 +1,115 @@
+
+
+
+
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'ship'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `ship`;
+		
+CREATE TABLE `ship` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `name` VARCHAR(25) NULL DEFAULT NULL,
+  `serialNumber` VARCHAR(10) NULL DEFAULT NULL,
+  `capacity` INTEGER(4) NULL DEFAULT NULL,
+  `type` INTEGER(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'dock'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `dock`;
+		
+CREATE TABLE `dock` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `name` VARCHAR(20) NULL DEFAULT NULL,
+  `type` INTEGER(1) NULL DEFAULT NULL,
+  `efficiency` INTEGER(3) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'user'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `user`;
+		
+CREATE TABLE `user` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `name` VARCHAR(15) NULL DEFAULT NULL,
+  `password` VARCHAR(25) NULL DEFAULT NULL,
+  `type` INTEGER(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'planet'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `planet`;
+		
+CREATE TABLE `planet` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `name` VARCHAR(15) NULL DEFAULT NULL,
+  `stationCount` INTEGER(2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'station'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `station`;
+		
+CREATE TABLE `station` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `new field` INTEGER NULL DEFAULT NULL,
+  `name` VARCHAR(15) NULL DEFAULT NULL,
+  `cargoSize` INTEGER(5) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Foreign Keys 
+-- ---
+
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `ship` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `dock` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `user` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `planet` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `station` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `ship` (`id`,`name`,`serialNumber`,`capacity`,`type`) VALUES
+-- ('','','','','');
+-- INSERT INTO `dock` (`id`,`name`,`type`,`efficiency`) VALUES
+-- ('','','','');
+-- INSERT INTO `user` (`id`,`name`,`password`,`type`) VALUES
+-- ('','','','');
+-- INSERT INTO `planet` (`id`,`name`,`stationCount`) VALUES
+-- ('','','');
+-- INSERT INTO `station` (`id`,`new field`,`name`,`cargoSize`) VALUES
+-- ('','','','');
