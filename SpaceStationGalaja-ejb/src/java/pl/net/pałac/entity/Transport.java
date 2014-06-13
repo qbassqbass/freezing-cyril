@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package entity;
+package pl.net.pałac.entity;
 
 import java.io.Serializable;
 import java.util.Date;

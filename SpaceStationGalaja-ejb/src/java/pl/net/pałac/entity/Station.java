@@ -4,16 +4,19 @@
  * and open the template in the editor.
  */
 
-package entity;
+package pl.net.pałac.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,14 +30,14 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Jakub
  */
 @Entity
-@Table(name = "planet")
+@Table(name = "station")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Planet.findAll", query = "SELECT p FROM Planet p"),
-    @NamedQuery(name = "Planet.findById", query = "SELECT p FROM Planet p WHERE p.id = :id"),
-    @NamedQuery(name = "Planet.findByName", query = "SELECT p FROM Planet p WHERE p.name = :name"),
-    @NamedQuery(name = "Planet.findByStationCount", query = "SELECT p FROM Planet p WHERE p.stationCount = :stationCount")})
-public class Planet implements Serializable {
+    @NamedQuery(name = "Station.findAll", query = "SELECT s FROM Station s"),
+    @NamedQuery(name = "Station.findById", query = "SELECT s FROM Station s WHERE s.id = :id"),
+    @NamedQuery(name = "Station.findByName", query = "SELECT s FROM Station s WHERE s.name = :name"),
+    @NamedQuery(name = "Station.findByCargoSize", query = "SELECT s FROM Station s WHERE s.cargoSize = :cargoSize")})
+public class Station implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,19 +47,22 @@ public class Planet implements Serializable {
     @Size(max = 15)
     @Column(name = "name")
     private String name;
-    @Column(name = "stationCount")
-    private Integer stationCount;
-    @OneToMany(mappedBy = "onPlanet")
-    private Collection<Station> stationCollection;
-    @OneToMany(mappedBy = "toPlanet")
+    @Column(name = "cargoSize")
+    private Integer cargoSize;
+    @JoinColumn(name = "onPlanet", referencedColumnName = "id")
+    @ManyToOne
+    private Planet onPlanet;
+    @OneToMany(mappedBy = "fromStation")
     private Collection<Transport> transportCollection;
-    @OneToMany(mappedBy = "fromPlanet")
+    @OneToMany(mappedBy = "toStation")
     private Collection<Transport> transportCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "onStation")
+    private Collection<Dock> dockCollection;
 
-    public Planet() {
+    public Station() {
     }
 
-    public Planet(Integer id) {
+    public Station(Integer id) {
         this.id = id;
     }
 
@@ -76,21 +82,20 @@ public class Planet implements Serializable {
         this.name = name;
     }
 
-    public Integer getStationCount() {
-        return stationCount;
+    public Integer getCargoSize() {
+        return cargoSize;
     }
 
-    public void setStationCount(Integer stationCount) {
-        this.stationCount = stationCount;
+    public void setCargoSize(Integer cargoSize) {
+        this.cargoSize = cargoSize;
     }
 
-    @XmlTransient
-    public Collection<Station> getStationCollection() {
-        return stationCollection;
+    public Planet getOnPlanet() {
+        return onPlanet;
     }
 
-    public void setStationCollection(Collection<Station> stationCollection) {
-        this.stationCollection = stationCollection;
+    public void setOnPlanet(Planet onPlanet) {
+        this.onPlanet = onPlanet;
     }
 
     @XmlTransient
@@ -111,6 +116,15 @@ public class Planet implements Serializable {
         this.transportCollection1 = transportCollection1;
     }
 
+    @XmlTransient
+    public Collection<Dock> getDockCollection() {
+        return dockCollection;
+    }
+
+    public void setDockCollection(Collection<Dock> dockCollection) {
+        this.dockCollection = dockCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -121,10 +135,10 @@ public class Planet implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Planet)) {
+        if (!(object instanceof Station)) {
             return false;
         }
-        Planet other = (Planet) object;
+        Station other = (Station) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -133,7 +147,7 @@ public class Planet implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Planet[ id=" + id + " ]";
+        return "ejb.Station[ id=" + id + " ]";
     }
     
 }

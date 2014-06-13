@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package entity;
+package pl.net.pałac.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -24,34 +24,37 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Jakub
  */
 @Entity
-@Table(name = "user")
+@Table(name = "ship")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-    @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
-    @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name"),
-    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
-    @NamedQuery(name = "User.findByType", query = "SELECT u FROM User u WHERE u.type = :type")})
-public class User implements Serializable {
+    @NamedQuery(name = "Ship.findAll", query = "SELECT s FROM Ship s"),
+    @NamedQuery(name = "Ship.findById", query = "SELECT s FROM Ship s WHERE s.id = :id"),
+    @NamedQuery(name = "Ship.findByName", query = "SELECT s FROM Ship s WHERE s.name = :name"),
+    @NamedQuery(name = "Ship.findBySerialNumber", query = "SELECT s FROM Ship s WHERE s.serialNumber = :serialNumber"),
+    @NamedQuery(name = "Ship.findByCapacity", query = "SELECT s FROM Ship s WHERE s.capacity = :capacity"),
+    @NamedQuery(name = "Ship.findByType", query = "SELECT s FROM Ship s WHERE s.type = :type")})
+public class Ship implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 15)
+    @Size(max = 25)
     @Column(name = "name")
     private String name;
-    @Size(max = 25)
-    @Column(name = "password")
-    private String password;
+    @Size(max = 10)
+    @Column(name = "serialNumber")
+    private String serialNumber;
+    @Column(name = "capacity")
+    private Integer capacity;
     @Column(name = "type")
     private Integer type;
 
-    public User() {
+    public Ship() {
     }
 
-    public User(Integer id) {
+    public Ship(Integer id) {
         this.id = id;
     }
 
@@ -71,12 +74,20 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
     }
 
     public Integer getType() {
@@ -97,10 +108,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof Ship)) {
             return false;
         }
-        User other = (User) object;
+        Ship other = (Ship) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -109,7 +120,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.User[ id=" + id + " ]";
+        return "ejb.Ship[ id=" + id + " ]";
     }
     
 }
