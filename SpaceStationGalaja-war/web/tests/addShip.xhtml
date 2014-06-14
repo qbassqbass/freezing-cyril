@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="formatka2" style="text-align: center" >
+            <h:outputText value="Nazwa:" />
+            <h:inputText id="name" value="#{managedBean.name}" />
+            <h:outputText value="Nr seryjny:" />
+            <h:inputText id="serialNuber" value="#{managedBean.serialNumber}" />
+            <h:outputText value="Pojemność:" />
+            <h:inputText id="capacity" value="#{managedBean.capacity}" />
+            <h:outputText value="Typ" />
+            <h:inputText id="type" value="#{managedBean.type}" />
+            <h:commandButton value="Zatwierdź" action="#{managedBean.addShip()}"/>
+        </h:form>
+    </h:body>
+</html>
+
