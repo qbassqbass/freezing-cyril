@@ -146,7 +146,7 @@ public class Transport implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Transport[ id=" + id + " ]";
+        return "pl.net.palac.galaja.entity.Transport[ id=" + id + " ]";
     }
     
 }

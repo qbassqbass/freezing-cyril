@@ -109,7 +109,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.User[ id=" + id + " ]";
+        return "pl.net.palac.galaja.entity.User[ id=" + id + " ]";
     }
     
 }

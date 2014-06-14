@@ -121,7 +121,7 @@ public class Dock implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Dock[ id=" + id + " ]";
+        return "pl.net.palac.galaja.entity.Dock[ id=" + id + " ]";
     }
     
 }

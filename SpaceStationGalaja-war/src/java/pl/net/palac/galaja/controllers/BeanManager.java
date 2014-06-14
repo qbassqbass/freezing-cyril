@@ -19,6 +19,8 @@ public class BeanManager {
     
     @PersistenceContext(unitName = "SpaceStationGalaja-ejbPU")
     private EntityManager em;
+//    @Resource 
+//    private UserTransaction utx;
     
     private ArrayList<Ship> ships;
 //    private ArrayList<Dock> docks;
@@ -121,8 +123,14 @@ public class BeanManager {
         s.setCapacity(capacity);
         s.setSerialNumber(serialNumber);
         s.setType(type);
-//        em.getTransaction().begin();
-        em.persist(s);
+//        try{
+//            utx.begin();
+    //        em.getTransaction().begin();
+            em.persist(s);
+//            utx.commit();
+//        }catch(Exception e){
+//            System.out.println(e);
+//        }
 //        em.getTransaction().commit();
     }
     

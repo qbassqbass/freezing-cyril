@@ -120,7 +120,7 @@ public class Ship implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Ship[ id=" + id + " ]";
+        return "pl.net.palac.galaja.entity.Ship[ id=" + id + " ]";
     }
     
 }

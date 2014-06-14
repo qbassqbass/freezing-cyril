@@ -147,7 +147,7 @@ public class Station implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Station[ id=" + id + " ]";
+        return "pl.net.palac.galaja.entity.Station[ id=" + id + " ]";
     }
     
 }

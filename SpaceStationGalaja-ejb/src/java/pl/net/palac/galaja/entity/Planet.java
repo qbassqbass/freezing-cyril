@@ -133,7 +133,7 @@ public class Planet implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Planet[ id=" + id + " ]";
+        return "pl.net.palac.galaja.entity.Planet[ id=" + id + " ]";
     }
     
 }
