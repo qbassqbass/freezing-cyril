@@ -6,7 +6,7 @@
 
 package pl.net.palac.galaja.controllers;
 
-import pl.net.palac.galaja.entity.Ship;
+import pl.net.palac.galaja.entity.*;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
